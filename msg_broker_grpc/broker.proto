@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package msg_broker;
+
+service handle_messages {
+
+    rpc GetPublication (MessageWithContent) returns (Reply1);
+
+    rpc BroadcastPublication (RequestUpdate) returns (Publication);
+
+    rpc HistoryHandler (RequestHistory) returns (stream History);
+}
+
+
+message MessageWithContent {
+    string topic = 1;
+    string content = 2;
+}
+
+message Reply1 {
+    string message = 1;
+}
+
+message RequestUpdate {
+    string topic = 1;
+}
+
+message Publication {
+    string content = 1;
+}
+
+message RequestHistory {
+    string topic = 1;
+}
+
+message History {
+    string content = 1;
+}
